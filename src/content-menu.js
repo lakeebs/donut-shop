@@ -46,7 +46,7 @@ export function createMenuPageContent() {
 
   // Menu
   const element = document.createElement('div');
-  element.classList.add('menu');
+  element.classList.add('menu-items');
 
   Object.keys(menuItems).forEach(key => {
     const divElement = document.createElement('div');
@@ -56,6 +56,7 @@ export function createMenuPageContent() {
     const itemImg = document.createElement('img');
     itemImg.src = menuItem.image;
     itemImg.alt = menuItem.title;
+    itemImg.classList.add('hidden');
     divElement.appendChild(itemImg);
 
     const title = document.createElement('h3');
@@ -65,11 +66,23 @@ export function createMenuPageContent() {
     divElement.appendChild(title);
     divElement.appendChild(price);
     element.appendChild(divElement);
+
+    // Check if the image is already loaded
+    if (itemImg.complete) {
+      itemImg.classList.remove('hidden');
+    } else {
+      // If the image is not yet loaded, wait for the load event
+      itemImg.addEventListener('load', function() {
+        itemImg.classList.remove('hidden');
+      });
+    }
+
   });
 
-  const fragment = document.createDocumentFragment();
-  fragment.appendChild(h2);
-  fragment.appendChild(element);
+  const menu = document.createElement('div');
+  menu.classList.add('menu');
+  menu.appendChild(h2);
+  menu.appendChild(element);
 
-  return fragment;
+  return menu;
 }

@@ -15,15 +15,12 @@ export function createHomePageContent() {
 
   // Check if the image is already loaded
   if (heroImg.complete) {
-    fadeInImage();
+    heroImg.classList.remove('hidden');
   } else {
     // If the image is not yet loaded, wait for the load event
-    heroImg.addEventListener('load', fadeInImage);
-  }
-
-  // Add a delay before removing the hidden class
-  function fadeInImage() {
-    heroImg.classList.remove('hidden');
+    heroImg.addEventListener('load', function() {
+      heroImg.classList.remove('hidden');
+    });
   }
 
   // Tagline

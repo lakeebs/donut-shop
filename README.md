@@ -1,2 +1,2 @@
 # Breadcrumbs
-Webpack practice for a restaurant page
+Webpack practice for a donut shop

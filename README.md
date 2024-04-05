@@ -1,2 +1,2 @@
-# Restaurant page
+# Breadcrumbs
 Webpack practice for a restaurant page
